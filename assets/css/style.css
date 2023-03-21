@@ -1,0 +1,15 @@
+.container{
+    width: 20%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+#check{
+    width: 80px;
+}
+
+h1, h2{
+    margin-left: 7rem;
+}
