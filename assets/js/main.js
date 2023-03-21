@@ -28,6 +28,15 @@ const arrayNumbers = [];
 
 const userNumber = [];
 
+// Dichiaro una variabile score
+
+let score = 0;
+console.log("Score", score)
+
+// Seleziono il contenitore del resultato
+
+const result = document.getElementById("result");
+
 // Richiamo la funzione show Number
 
 showNumbers();
@@ -71,12 +80,20 @@ check.addEventListener("click", function () {
   const numberThree = document.getElementById("n3").value;
   const numberFour = document.getElementById("n4").value;
   const numberFive = document.getElementById("n5").value;
-
+  // Pusho dentro l'array
   userNumber.push(numberOne);
   userNumber.push(numberTwo);
   userNumber.push(numberThree);
   userNumber.push(numberFour);
   userNumber.push(numberFive);
-  console.log(userNumber, "Numeri utente");
-});
 
+  console.log(userNumber, "Numeri utente");
+  console.log("Score2", score)
+  for (let i = 0; i < userNumber.length; i++) {
+    if (arrayNumbers.includes(Number(userNumber[i]))) {
+      score++;
+    }
+  }
+  console.log("Score3", score)
+  result.innerHTML = `Hai individuato ${score} numeri`;
+});
