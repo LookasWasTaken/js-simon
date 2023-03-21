@@ -7,19 +7,26 @@ Bonus:
 Invece di usare prompt e allerte usate inputs ed elementi della dom per mostrare a schermo il risultato.
 */
 
-// math.random 5 +1 
+// math.random 5 +1
 // setTimeout * 30000 (ms)
 // prompt
 // check if chosen numbers are the same of the software
 
-
 // Seleziono il contenitore dei miei numeri randomici
 
-const randomNumbers = document.getElementById("randomNumbers")
+const randomNumbers = document.getElementById("randomNumbers");
+
+// Seleziono il bottone controlla il risultato
+
+const check = document.getElementById("check");
 
 // Dichiaro un array vuoto di numeri
 
 const arrayNumbers = [];
+
+// Dichiaro un array dell'utente vuoto di numeri
+
+const userNumber = [];
 
 // Richiamo la funzione show Number
 
@@ -29,31 +36,47 @@ showNumbers();
 
 randomNumbers.append(arrayNumbers);
 
+setTimeout(() => {
+  randomNumbers.innerHTML = "";
+}, 3000);
+
 // Pusho gli elementi nell'array vuoto tramite un ciclo for (i <= 5 sta per le volte che deve iterare)
 
 function showNumbers() {
-    for (let i = 1; i <= 5; i++) {
-        arrayNumbers.push(generateNumbers())
-    }
-    console.log("Numeri Individuati =", arrayNumbers);
-    timer()
+  for (let i = 1; i <= 5; i++) {
+    arrayNumbers.push(generateNumbers());
+  }
+  console.log("Numeri Individuati =", arrayNumbers);
 }
-
 
 // Funzione di generazione di numeri fatta con un math.floor+math.random * 100 + 1 che visualizzerà dei numeri randomici da 1 a 10
 // Se il numero sarà già presente nell'array, tramite ciclo while, lo rimpiazzo con uno nuovo, finchè non sarà diverso
 
 function generateNumbers() {
-    let number = Math.floor(Math.random() * 100) +1
-    console.log("Numero Random =", number)
-    while (arrayNumbers.includes(number)) {
-        number = Math.floor(Math.random() * 100) + 1;
-        console.log("Numero Random Alternativo =", number);
-      }
-    return number;
+  let number = Math.floor(Math.random() * 100) + 1;
+  console.log("Numero Random =", number);
+  while (arrayNumbers.includes(number)) {
+    number = Math.floor(Math.random() * 100) + 1;
+    console.log("Numero Random Alternativo =", number);
+  }
+  return number;
 }
 
+// Event Listner al Click di Check
 
-function timer() {
-    
-}
+check.addEventListener("click", function () {
+  // Seleziono i 5 input
+  const numberOne = document.getElementById("n1").value;
+  const numberTwo = document.getElementById("n2").value;
+  const numberThree = document.getElementById("n3").value;
+  const numberFour = document.getElementById("n4").value;
+  const numberFive = document.getElementById("n5").value;
+
+  userNumber.push(numberOne);
+  userNumber.push(numberTwo);
+  userNumber.push(numberThree);
+  userNumber.push(numberFour);
+  userNumber.push(numberFive);
+  console.log(userNumber, "Numeri utente");
+});
+
