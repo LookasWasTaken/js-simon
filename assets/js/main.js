@@ -28,14 +28,22 @@ const arrayNumbers = [];
 
 const userNumber = [];
 
+// Dichiaro un array vuoto di numeri individuati
+
+const guessedNumbers = [];
+
 // Dichiaro una variabile score
 
 let score = 0;
 console.log("Score", score)
 
-// Seleziono il contenitore del resultato
+// Seleziono il contenitore del risultato
 
 const result = document.getElementById("result");
+
+// Selezione il contenitore del counter 
+
+const counter = document.getElementById("counter");
 
 // Richiamo la funzione show Number
 
@@ -47,7 +55,7 @@ randomNumbers.append(arrayNumbers);
 
 setTimeout(() => {
   randomNumbers.innerHTML = "";
-}, 3000);
+}, 30000);
 
 // Pusho gli elementi nell'array vuoto tramite un ciclo for (i <= 5 sta per le volte che deve iterare)
 
@@ -88,12 +96,16 @@ check.addEventListener("click", function () {
   userNumber.push(numberFive);
 
   console.log(userNumber, "Numeri utente");
-  console.log("Score2", score)
   for (let i = 0; i < userNumber.length; i++) {
     if (arrayNumbers.includes(Number(userNumber[i]))) {
       score++;
+      guessedNumbers.push(Number(userNumber[i]));
     }
   }
-  console.log("Score3", score)
+  console.log(guessedNumbers, "Numeri individuati")
+  console.log("Score Aggiornato", score)
   result.innerHTML = `Hai individuato ${score} numeri`;
+  counter.innerHTML = `I numeri individuati sono ${guessedNumbers}`;
 });
+
+
