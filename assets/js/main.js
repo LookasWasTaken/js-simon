@@ -35,15 +35,22 @@ const guessedNumbers = [];
 // Dichiaro una variabile score
 
 let score = 0;
-console.log("Score", score)
+console.log("Score", score);
 
 // Seleziono il contenitore del risultato
 
 const result = document.getElementById("result");
 
-// Selezione il contenitore del counter 
+// Selezione il contenitore del counter
 
 const counter = document.getElementById("counter");
+
+// Seleziono i 5 input
+const numberOne = document.getElementById("n1").value;
+const numberTwo = document.getElementById("n2").value;
+const numberThree = document.getElementById("n3").value;
+const numberFour = document.getElementById("n4").value;
+const numberFive = document.getElementById("n5").value;
 
 // Richiamo la funzione show Number
 
@@ -55,7 +62,12 @@ randomNumbers.append(arrayNumbers);
 
 setTimeout(() => {
   randomNumbers.innerHTML = "";
-}, 30000);
+  document.getElementById("n1").removeAttribute("disabled");
+  document.getElementById("n2").removeAttribute("disabled");
+  document.getElementById("n3").removeAttribute("disabled");
+  document.getElementById("n4").removeAttribute("disabled");
+  document.getElementById("n5").removeAttribute("disabled");
+}, 3000);
 
 // Pusho gli elementi nell'array vuoto tramite un ciclo for (i <= 5 sta per le volte che deve iterare)
 
@@ -63,7 +75,6 @@ function showNumbers() {
   for (let i = 1; i <= 5; i++) {
     arrayNumbers.push(generateNumbers());
   }
-  console.log("Numeri Individuati =", arrayNumbers);
 }
 
 // Funzione di generazione di numeri fatta con un math.floor+math.random * 100 + 1 che visualizzerà dei numeri randomici da 1 a 10
@@ -71,7 +82,6 @@ function showNumbers() {
 
 function generateNumbers() {
   let number = Math.floor(Math.random() * 100) + 1;
-  console.log("Numero Random =", number);
   while (arrayNumbers.includes(number)) {
     number = Math.floor(Math.random() * 100) + 1;
     console.log("Numero Random Alternativo =", number);
@@ -82,12 +92,6 @@ function generateNumbers() {
 // Event Listner al Click di Check
 
 check.addEventListener("click", function () {
-  // Seleziono i 5 input
-  const numberOne = document.getElementById("n1").value;
-  const numberTwo = document.getElementById("n2").value;
-  const numberThree = document.getElementById("n3").value;
-  const numberFour = document.getElementById("n4").value;
-  const numberFive = document.getElementById("n5").value;
   // Pusho dentro l'array
   userNumber.push(numberOne);
   userNumber.push(numberTwo);
@@ -102,10 +106,8 @@ check.addEventListener("click", function () {
       guessedNumbers.push(Number(userNumber[i]));
     }
   }
-  console.log(guessedNumbers, "Numeri individuati")
-  console.log("Score Aggiornato", score)
+  console.log(guessedNumbers, "Numeri individuati");
+  console.log("Score Aggiornato", score);
   result.innerHTML = `Hai individuato ${score} numeri`;
   counter.innerHTML = `I numeri individuati sono ${guessedNumbers}`;
 });
-
-
